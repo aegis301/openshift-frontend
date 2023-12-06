@@ -26,8 +26,7 @@ async function seedEmployees(client) {
       employees.map(async (employee) => {
         return client.sql`
         INSERT INTO employees (id, first_name, last_name, percentage)
-        VALUES (${employee.id}, ${employee.first_name}, ${employee.last_name}, ${employee.percentage})
-        ON CONFLICT (id) DO NOTHING;
+        VALUES (${employee.id}, ${employee.first_name}, ${employee.last_name}, ${employee.percentage});
       `;
       }),
     );
@@ -136,14 +135,17 @@ async function main() {
   remap_ids(employees);
   remap_ids(teams);
   remap_ids(shift_templates);
-    // map four employees to each team
-    teams.map((team) => {
-      team.employees = employees.slice(0, 4).map((employee) => employee.id);
-      employees.splice(0, 4);
+    // map four random employees to each team
+  teams.map((team) => {
+      team.employees = employees
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 4)
+        .map((employee) => employee.id);
       return team;
-    });
+    }
+  );
     // map two random teams to each shift_template
-    shift_templates.map((shift_template) => {
+  shift_templates.map((shift_template) => {
       shift_template.possible_teams = teams
         .sort(() => Math.random() - 0.5)
         .slice(0, 2)
