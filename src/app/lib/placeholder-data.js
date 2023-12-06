@@ -59,6 +59,18 @@ const employees = [
         first_name: 'Jane',
         last_name: 'Jones',
         percentage: 100
+    },
+    {
+        id: 11,
+        first_name: 'John',
+        last_name: 'Brown',
+        percentage: 100
+    },
+    {
+        id: 12,
+        first_name: 'Jane',
+        last_name: 'Brown',
+        percentage: 100
     }
 
 ]
@@ -104,4 +116,10 @@ const shift_templates = [
         possible_teams: [2, 3],
     }
 ]
+
+module.exports = {
+    employees,
+    teams,
+    shift_templates
+}
 
