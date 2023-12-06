@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "seed": "node -r dotenv/config ./src/scripts/seed.js"
+    "seed": "node -r dotenv/config ./src/scripts/seed.js",
+    "clean_db": "node -r dotenv/config ./src/scripts/clean_db.js"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
