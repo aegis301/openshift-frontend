@@ -133,20 +133,9 @@ async function main() {
   const client = await db.connect();
   console.log('Connected to Postgres');
   // map new ids for employees
-  employees.map((employee) => {
-    employee.id = uuidv4();
-    return employee;
-  });
-  // map new ids for teams
-  teams.map((team) => {
-    team.id = uuidv4();
-    return team;
-  });
-  // map new ids for shift_templates
-  shift_templates.map((shift_template) => {
-    shift_template.id = uuidv4();
-    return shift_template;
-  });
+  remap_ids(employees);
+  remap_ids(teams);
+  remap_ids(shift_templates);
     // map four employees to each team
     teams.map((team) => {
       team.employees = employees.slice(0, 4).map((employee) => employee.id);
